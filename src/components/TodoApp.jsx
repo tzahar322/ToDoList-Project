@@ -11,7 +11,7 @@ const TodoApp = () => {
             text: text,
             completed: false,
         };
-        setTodos([...todos, newTodo]);
+        setTodos(prevTodos => [...prevTodos, newTodo]);
     };
 
     const removeTodo = (id) => {
@@ -19,9 +19,11 @@ const TodoApp = () => {
     };
 
     const toggleComplete = (id) => {
-        setTodos(todos.map(todo => 
-            todo.id === id ? { ...todo, completed: !todo.completed } : todo
-        ));
+        setTodos(prevTodos => 
+            prevTodos.map(todo => 
+                todo.id === id ? { ...todo, completed: !todo.completed } : todo
+            )
+        );
     };
 
     return (
