@@ -1,27 +1,30 @@
 import React, { useState } from 'react';
 import TodoList from './TodoList';
 import TodoForm from './TodoForm';
+import { Task } from '../types/task';
 
-const TodoApp = () => {
-    const [todos, setTodos] = useState([]);
+const TodoApp: React.FC = () => {
+    const [todos, setTodos] = useState<Task[]>([]);
 
-    const addTodo = (text) => {
-        const newTodo = {
+    const addTodo = (text: string) => {
+        const newTodo: Task = {
             id: Date.now(),
             text: text,
             completed: false,
         };
-        setTodos([...todos, newTodo]);
+        setTodos(prevTodos => [...prevTodos, newTodo]);
     };
 
-    const removeTodo = (id) => {
+    const removeTodo = (id: number) => {
         setTodos(todos.filter(todo => todo.id !== id));
     };
 
-    const toggleComplete = (id) => {
-        setTodos(todos.map(todo => 
-            todo.id === id ? { ...todo, completed: !todo.completed } : todo
-        ));
+    const toggleComplete = (id: number) => {
+        setTodos(prevTodos => 
+            prevTodos.map(todo => 
+                todo.id === id ? { ...todo, completed: !todo.completed } : todo
+            )
+        );
     };
 
     return (

@@ -1,7 +1,8 @@
 import React from 'react';
 import TodoItem from './TodoItem';
+import { TodoListProps } from '../types/TodoListProps';
 
-const TodoList = ({ todos, removeTodo, toggleComplete }) => {
+const TodoList: React.FC<TodoListProps> = ({ todos, removeTodo, toggleComplete }) => {
     return (
         <ul className='todo-list'>
             {todos.map(todo => (

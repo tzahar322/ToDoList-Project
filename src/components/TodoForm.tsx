@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 
-const TodoForm = ({ addTodo }) => {
-    const [inputValue, setInputValue] = useState('');
+interface TodoFormProps {
+    addTodo: (text: string) => void;
+}
 
-    const handleSubmit = (text) => {
-        text.preventDefault();
+const TodoForm: React.FC<TodoFormProps> = ({ addTodo }) => {
+    const [inputValue, setInputValue] = useState<string>('');
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
         if (!inputValue) return;
         addTodo(inputValue);
         setInputValue('');
@@ -15,7 +19,7 @@ const TodoForm = ({ addTodo }) => {
             <input 
                 type="text" 
                 value={inputValue} 
-                onChange={(text) => setInputValue(text.target.value)} 
+                onChange={(event) => setInputValue(event.target.value)} 
                 placeholder="Добавьте новую задачу" 
             />
             <button type="submit">Добавить</button>
