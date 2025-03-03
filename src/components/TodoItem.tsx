@@ -1,5 +1,11 @@
 import React from 'react';
-import { TodoItemProps } from '../types/TodoItemProps';
+import { Task } from '../types/task';
+
+interface TodoItemProps {
+    todo: Task;
+    removeTodo: (id: number) => void;
+    toggleComplete: (id: number) => void;
+}
 
 const TodoItem: React.FC<TodoItemProps> = ({ todo, removeTodo, toggleComplete }) => {
 
